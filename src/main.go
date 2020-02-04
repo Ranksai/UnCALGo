@@ -11,6 +11,9 @@ import (
 // x1 := {}, x2 := {} 必ず{}, のあとには空白を入れる
 
 const (
+	SampleData                    = "&x1@cycle(&x1 := {a:&x2}, &x2 := {b:&x2,c:&x3}, &x3 := &y)"
+	AtmarkSingle                  = "&x1@&x1"
+	AtmarkData                    = "&(&x1 := {a:&x2}, &x2 := {b:&x2,c:&x3}, &x3 := &y)@(&x1 := {a:&x2}, &x2 := {b:&x2,c:&x3}, &x3 := &y)"
 	InclusionSampleData           = "(&x1 := {a:&x2}, &x2 := {b:&x2,c:&x3}, &x3 := &y)"
 	InclusionSampleDataNotInclude = "&x1 := {a:&x2}, &x2 := {b:&x2,c:&x3}, &x3 := &y"
 	InclusionSampleSingle         = "&x1 := {a:&x2}"
