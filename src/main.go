@@ -45,8 +45,8 @@ type Nodes = []Node
 
 // 与えられた d の 1 つのノードについて処理する
 func calcInclusion(inclusionCurlyBracket string) (Node, error) {
-	fmt.Println("input is")
-	fmt.Println(inclusionCurlyBracket)
+	//fmt.Println("input is")
+	//fmt.Println(inclusionCurlyBracket)
 
 	// := で split
 	// 左辺が対象ノード，右辺が左辺の対象ノードからどの枝を使ってどのノードに行くか書かれている ex: a:&x2 a の枝を使用して &x2 のノードに移動
@@ -160,6 +160,16 @@ func calc(input string, tree Tree) (Tree, error) {
 		tree.TreeNodes = nodes
 		// endNode の確認
 		tree = checkEndNodes(tree)
+	} else {
+		cycleInput := strings.TrimLeft(input, "(")
+		cycleInput = strings.TrimRight(cycleInput, ")")
+		nodes, err := calcCycle(cycleInput)
+		if err != nil {
+			return tree, err
+		}
+		tree.TreeNodes = nodes
+		// endNode の確認
+		tree = checkEndNodes(tree)
 	}
 	return tree, nil
 }
@@ -173,7 +183,7 @@ func main() {
 		TreeNodes:  nil,
 	}
 	// input tree data
-	input := SampleData
+	input := InclusionSampleDataNotInclude
 	tree, _ = calc(input, tree)
 	fmt.Printf("%+v", tree)
 }
